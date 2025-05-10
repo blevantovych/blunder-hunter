@@ -1,7 +1,3 @@
-Sure! Here's a fun and informative GitHub description for **Blunder Hunter**:
-
----
-
 ### 🕵️‍♂️ Blunder Hunter
 
 **Blunder Hunter** is a chess puzzle extractor that digs through your games and finds those *"oops!"* moments that turned into brilliant tactics. Whether you’re blundering your queen or pulling off a lucky mate-in-two, Blunder Hunter is here to spotlight the chaos and turn your games into training gold.
