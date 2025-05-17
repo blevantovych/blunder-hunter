@@ -1,6 +1,5 @@
 const { spawn } = require("child_process");
 const { Chess } = require("chess.js");
-const path = require("path");
 
 const THINK_TIME_PER_MOVE_MS = 500;
 const MULTIPV_COUNT = 5;
@@ -17,7 +16,12 @@ exports.handler = async (event) => {
   const game = new Chess();
   game.loadPgn(pgn);
   const moves = game.history({ verbose: true });
-  const analysisResults = [];
+  const puzzles = []
+  let evaluatingPuzzle = false
+  let puzzleSequence = ""
+  let puzzleMoveIndex = 0;
+  let puzzleSide = "" // b or w
+  // const analysisResults = [];
 
   return new Promise((resolve, reject) => {
     const stockfish = spawn('./stockfish');
@@ -52,7 +56,8 @@ exports.handler = async (event) => {
         stockfish.stdin.end();
         resolve({
           statusCode: 200,
-          body: JSON.stringify(analysisResults),
+          // body: JSON.stringify(analysisResults),
+          body: JSON.stringify(puzzles)
         });
         return;
       }
@@ -83,11 +88,11 @@ exports.handler = async (event) => {
 
         if (line.startsWith("bestmove")) {
           const variations = multipv.filter(Boolean);
-          analysisResults.push({
-            move: moves[currentIndex - 1].san,
-            fen: currentBoard.fen(),
-            variations,
-          });
+          // analysisResults.push({
+          //   move: moves[currentIndex - 1].san,
+          //   fen: currentBoard.fen(),
+          //   variations,
+          // });
 
           const sorted = [...variations].sort((a, b) => parseEval(b.evaluation) - parseEval(a.evaluation));
           const topEval = parseEval(sorted[0]?.evaluation ?? 0);
@@ -95,11 +100,38 @@ exports.handler = async (event) => {
           const computerMove = sorted[0]?.moves?.[0];
           const gameMove = moves[currentIndex]?.lan;
 
-          if (Math.abs(topEval - secondEval) > 200 && computerMove !== gameMove) {
-            console.log(`🤓 Only one good move: ${getCurrentMoveString(computerMove, currentIndex)} vs ${gameMove}`);
+          const onlyOneGoodMove = Math.abs(topEval - secondEval) > 200
+          if (
+              onlyOneGoodMove || (evaluatingPuzzle && currentBoard.turn() !== puzzleSide)
+          ) {
+            if (onlyOneGoodMove) {
+              console.log(`🤓 Only one good move: ${getCurrentMoveString(computerMove, currentIndex)} vs ${gameMove}`);
+            }
+            if (!evaluatingPuzzle) {
+              puzzleMoveIndex = currentIndex;
+              const isBlack = currentIndex % 2 === 1;
+              puzzleSide = isBlack ? 'b' : 'w'
+            }
+            evaluatingPuzzle = true;
+            puzzleMoveIndex++;
+            puzzleSequence += `${getCurrentMoveString(computerMove, currentIndex)} `
+
+            console.log(`Analyzing move ${getCurrentMoveString(computerMove, currentIndex)}`);
+            currentBoard.move(computerMove);
+            outputBuffer = "";
+            analyzeMove();
+          } else {
+            if (evaluatingPuzzle) {
+              puzzles.push({puzzleSequence})
+              evaluatingPuzzle = false;
+              puzzleSequence = ""
+              puzzleSide = ""
+            }
           }
 
-          nextMove();
+          if (!evaluatingPuzzle) {
+            nextMove();
+          }
         }
       }
     });

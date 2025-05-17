@@ -10,8 +10,14 @@ const pgn = fs.readFileSync(PGN_PATH, "utf8");
 const game = new Chess();
 game.loadPgn(pgn);
 
-const moves = game.history({verbose: true}); // SAN moves
-const analysisResults = [];
+const moves = game.history({ verbose: true });
+const puzzles = []
+let evaluatingPuzzle = false
+let puzzleSequence = ""
+let puzzleMoveIndex = 0;
+let puzzleSide = "" // b or w
+let fenBeforePuzzle = ""
+// const analysisResults = [];
 
 let stockfish;
 let currentIndex = 0;
@@ -62,28 +68,54 @@ function handleStockfishOutput(data) {
     }
 
     if (line.startsWith("bestmove")) {
-      // Save the current move analysis
-      const variations = multipv.filter(Boolean)
-      analysisResults.push({
-        move: moves[currentIndex - 1].san,
-        fen: currentBoard.fen(),
-        variations 
-      });
-      const variationsSortedByBestMove = variations.sort((a, b) => parseEval(b.evaluation) - parseEval(a.evaluation))
-      const topMoveEval = variationsSortedByBestMove?.[0]?.evaluation ?? 0
-      const secondMoveEval = variationsSortedByBestMove?.[1]?.evaluation ?? 0
-      if (!Number.isFinite(topMoveEval) || !Number.isFinite(secondMoveEval)) {
-        console.warn(`⚠️ Invalid evaluation at move ${currentIndex}`);
-        nextMove();
-        return;
-      }
-      const computerMove = variationsSortedByBestMove?.[0]?.moves?.[0];
+      const variations = multipv.filter(Boolean);
+      // analysisResults.push({
+      //   move: moves[currentIndex - 1].san,
+      //   fen: currentBoard.fen(),
+      //   variations,
+      // });
+
+      const sorted = [...variations].sort((a, b) => parseEval(b.evaluation) - parseEval(a.evaluation));
+      const topEval = parseEval(sorted[0]?.evaluation ?? 0);
+      const secondEval = parseEval(sorted[1]?.evaluation ?? 0);
+      const computerMove = sorted[0]?.moves?.[0];
       const gameMove = moves[currentIndex]?.lan;
-      if (Math.abs(topMoveEval - secondMoveEval) > 200 && Number.isFinite(topMoveEval) && computerMove !== gameMove) {
-        console.log(`🤓 Found only one good move ${getCurrentMoveString(variationsSortedByBestMove[0].moves[0], currentIndex)}. Move in the game ${moves[currentIndex]?.lan}`)
+
+      const onlyOneGoodMove = Math.abs(topEval - secondEval) > 100
+      if (
+          onlyOneGoodMove || (evaluatingPuzzle && currentBoard.turn() !== puzzleSide)
+      ) {
+        if (onlyOneGoodMove) {
+          console.log(`🤓 Only one good move: ${getCurrentMoveString(computerMove, evaluatingPuzzle ? puzzleMoveIndex : currentIndex)} ${!evaluatingPuzzle ? `vs ${gameMove}` : ''}`);
+        }
+        if (!evaluatingPuzzle) {
+          fenBeforePuzzle = currentBoard.fen();
+          puzzleMoveIndex = currentIndex;
+          const isBlack = currentIndex % 2 === 1;
+          puzzleSide = isBlack ? 'b' : 'w'
+        }
+        evaluatingPuzzle = true;
+        puzzleMoveIndex++;
+        puzzleSequence += `${getCurrentMoveString(computerMove, currentIndex)} `
+
+        console.log(`Analyzing move ${getCurrentMoveString(computerMove, evaluatingPuzzle ? puzzleMoveIndex : currentIndex)}`);
+        currentBoard.move(computerMove);
+        outputBuffer = "";
+        analyzeMove();
+      } else {
+        if (evaluatingPuzzle) {
+          console.log(`puzzles is done: ${puzzleSequence}`)
+          puzzles.push({puzzleSequence})
+          evaluatingPuzzle = false;
+          puzzleSequence = ""
+          puzzleSide = ""
+          currentBoard.load(fenBeforePuzzle)
+        }
       }
 
-      nextMove(); // analyze next
+      if (!evaluatingPuzzle) {
+        nextMove();
+      }
     }
   }
 }
@@ -97,8 +129,10 @@ function analyzeMove() {
 function nextMove() {
   if (currentIndex >= moves.length) {
     stockfish.stdin.end();
-    fs.writeFileSync("analysis.json", JSON.stringify(analysisResults, null, 2));
-    console.log("✅ Analysis complete. Saved to analysis.json");
+    // fs.writeFileSync("analysis.json", JSON.stringify(analysisResults, null, 2));
+    // console.log("✅ Analysis complete. Saved to analysis.json");
+    fs.writeFileSync("puzzles.json", JSON.stringify(puzzles, null, 2));
+    console.log("✅ Puzzles complete. Saved to puzzles.json");
     return;
   }
   const move = moves[currentIndex].san;
