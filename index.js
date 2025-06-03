@@ -73,6 +73,9 @@ exports.handler = async (event) => {
         const time = pgnHeaders.UTCTime || 'unknown-time'
         const eloWhite = Number(pgnHeaders.WhiteElo) || 0
         const eloBlack = Number(pgnHeaders.BlackElo) || 0
+        const Site = pgnHeaders.Site || ""
+        const White = pgnHeaders.White || ""
+        const Black = pgnHeaders.Black || ""
 
         const event = pgnHeaders.Event || 'unknown-event'
         console.log('saving to DynamoDB', JSON.stringify(puzzles))
@@ -83,7 +86,11 @@ exports.handler = async (event) => {
               Event: event,
               DateTime: `${date}T${time}`,
               Puzzle: `${puzzle.puzzleFen},${puzzle.puzzleSequence}`,
-              CombinedElo: eloWhite + eloBlack
+              CombinedElo: eloWhite + eloBlack,
+              Event: lichessEvent,
+              Site,
+              White,
+              Black,
             },
           };
           const command = new PutCommand(params);
@@ -139,9 +146,11 @@ exports.handler = async (event) => {
           const computerMove = sorted[0]?.moves?.[0];
           const gameMove = moves[currentIndex]?.lan;
 
-          const onlyOneGoodMove = Math.abs(topEval - secondEval) > 200 && ((topEval * secondEval) < 0 || Math.abs(secondEval) < 100)
+          const onlyOneGoodMove = Math.abs(topEval - secondEval) > 200 &&
+            ((topEval * secondEval) < 0 || Math.abs(secondEval) < 100) &&
+            (puzzleSide === 'w' ? topEval >= 0 : topEval <= 0)
           if (
-              onlyOneGoodMove || (evaluatingPuzzle && currentBoard.turn() !== puzzleSide)
+              onlyOneGoodMove || (evaluatingPuzzle && currentBoard.turn() !== puzzleSide) && computerMove
           ) {
             if (onlyOneGoodMove) {
               console.log(`🤓 Only one good move: ${getCurrentMoveString(computerMove, evaluatingPuzzle ? puzzleMoveIndex : currentIndex)} vs ${gameMove}`);

@@ -67,3 +67,10 @@ aws lambda update-function-code \
 --function-name push-games-to-sqs \
 --zip-file fileb://function.zip
 ```
+
+9. Increase timeout
+```sh
+aws lambda update-function-configuration \
+  --function-name push-games-to-sqs \
+  --timeout 900
+```
