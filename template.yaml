@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  puzzlesDynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: "chessPuzzles"
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: "Event"
+          AttributeType: "S"
+        - AttributeName: "Puzzle"
+          AttributeType: "S"
+        - AttributeName: "DateTime"
+          AttributeType: "S"
+        - AttributeName: "CombinedElo"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "Event"
+          KeyType: "HASH"
+        - AttributeName: "Puzzle"
+          KeyType: "RANGE"
+      LocalSecondaryIndexes:
+        - IndexName: "myLSI"
+          KeySchema:
+            - AttributeName: "Event" 
+              KeyType: "HASH"
+            - AttributeName: "CombinedElo"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "INCLUDE"
+            NonKeyAttributes:
+              - "DateTime" 
+              - "Puzzle"
+        - IndexName: "myLSI2"
+          KeySchema:
+            - AttributeName: "Event" 
+              KeyType: "HASH"
+            - AttributeName: "DateTime"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "INCLUDE"
+            NonKeyAttributes:
+              - "CombinedElo" 
+              - "Puzzle"

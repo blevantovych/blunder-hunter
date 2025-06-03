@@ -67,6 +67,69 @@ Invoke lambda
 ```sh
 aws lambda invoke \
   --function-name hello-world \
-  --payload "$(base64 < event.json)" \
+  --cli-read-timeout 900 \
+  --payload "$(base64 < event2.json)" \
   response.json
+```
+
+Create SQS queue
+```sh
+aws sqs create-queue --queue-name chess-games-to-create-puzzles-from
+```
+
+Get SQS ARN and URL (e.g. https://sqs.eu-central-1.amazonaws.com/124355670858/chess-games-to-create-puzzles-from)
+```sh
+QUEUE_URL=$(aws sqs get-queue-url --queue-name chess-games-to-create-puzzles-from --query 'QueueUrl' --output text)
+QUEUE_ARN=$(aws sqs get-queue-attributes --queue-url $QUEUE_URL --attribute-name QueueArn --query 'Attributes.QueueArn' --output text)
+```
+
+Increase the SQS queue's visibility timeout
+
+```sh
+aws sqs set-queue-attributes \
+  --queue-url https://sqs.eu-central-1.amazonaws.com/124355670858/chess-games-to-create-puzzles-from \
+  --attributes VisibilityTimeout=900
+```
+
+Add Permission for SQS to Invoke Lambda
+
+```sh
+aws lambda add-permission \
+  --function-name hello-world \
+  --statement-id sqs-invoke \
+  --action "lambda:InvokeFunction" \
+  --principal sqs.amazonaws.com \
+  --source-arn $QUEUE_ARN
+```
+
+Allow lambda to 
+
+```sh
+aws iam put-role-policy \
+  --role-name lambda-ex \
+  --policy-name AllowSQSAccess \
+  --policy-document '{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "sqs:ReceiveMessage",
+          "sqs:DeleteMessage",
+          "sqs:GetQueueAttributes"
+        ],
+        "Resource": "arn:aws:sqs:eu-central-1:124355670858:chess-games-to-create-puzzles-from"
+      }
+    ]
+  }'
+```
+
+Create Event Source Mapping
+
+```sh
+aws lambda create-event-source-mapping \
+  --function-name hello-world \
+  --event-source-arn $QUEUE_ARN \
+  --batch-size 1 \
+  --enabled
 ```

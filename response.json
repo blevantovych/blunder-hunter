@@ -1,1 +1,1 @@
-{"statusCode":200,"body":{"moves":3}}
+{"statusCode":200,"body":"[{\"puzzleSequence\":\"a3g3 g7h7 f4g5 h7g7 g5f4\",\"puzzleFen\":\"8/6R1/8/8/5k1p/r6P/6PK/8 b - - 0 43\"}]"}
