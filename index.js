@@ -139,7 +139,7 @@ exports.handler = async (event) => {
           const computerMove = sorted[0]?.moves?.[0];
           const gameMove = moves[currentIndex]?.lan;
 
-          const onlyOneGoodMove = Math.abs(topEval - secondEval) > 200
+          const onlyOneGoodMove = Math.abs(topEval - secondEval) > 200 && ((topEval * secondEval) < 0 || Math.abs(secondEval) < 100)
           if (
               onlyOneGoodMove || (evaluatingPuzzle && currentBoard.turn() !== puzzleSide)
           ) {
