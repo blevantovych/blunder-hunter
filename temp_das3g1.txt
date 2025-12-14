@@ -1,0 +1,1140 @@
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'g8h7' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd8c8' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'c1e1' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'f2e3' }
+calling nextmove
+{ currentIndex: 89, movesLength: 89 }
+{ computerMove: 'd5e3' }
