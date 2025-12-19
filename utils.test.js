@@ -3,6 +3,7 @@ import { Chess } from "chess.js";
 import {test, expect, vi} from 'vitest'
 // import stockfishOutput from './stockfish_output_delimiter.json' assert { type: 'json' };
 import stockfishOutput from './game_12_updated.json' assert { type: 'json' };
+import stockfishOutputWithMate from './game_with_mate_puzzle.json' assert { type: 'json' };
 import {readFileSync} from 'node:fs'
 
 
@@ -936,7 +937,7 @@ import {readFileSync} from 'node:fs'
 //   expect(analyzeMove).toHaveBeenCalled()
 // })
 
-function mockStockfishOutput() {
+function mockStockfishOutput(stockfishOutput) {
   let onData;
   let stockfishOutputIndex = -1;
   return () => ({
@@ -1026,11 +1027,11 @@ function mockStockfishOutput() {
 //   ])
 // }, 120_000)
 
-test.only('getPuzzles game 12', async() => {
+test('getPuzzles game 12', async() => {
   const pgn = readFileSync('./game12.pgn').toString()
   console.log({ pgn });
 
-  const spawn = mockStockfishOutput()
+  const spawn = mockStockfishOutput(stockfishOutput)
   const puzzles = await getPuzzles(pgn, spawn, 0, 0)
   console.log({ puzzles });
   expect(puzzles).toEqual([
@@ -1049,6 +1050,25 @@ test.only('getPuzzles game 12', async() => {
   {
     puzzleSequence: 'c5e4 c3c2 d8c8 b5b4',
     puzzleFen: '3r2k1/5pp1/1pr4p/1Rn1P3/p1N5/P1R4P/1P3PPK/8 b - - 8 36'
+  }
+])
+}, 120_000)
+
+test('getPuzzles with mate', async() => {
+  const pgn = readFileSync('./game20.pgn').toString()
+  console.log({ pgn });
+
+  const spawn = mockStockfishOutput(stockfishOutputWithMate)
+  const puzzles = await getPuzzles(pgn, spawn, 0, 0)
+  console.log({ puzzles });
+  expect(puzzles).toEqual([
+  {
+    puzzleSequence: 'f6e4 b7b8 d7b8 b1b8 e8d7 f3e5',
+    puzzleFen: '4k3/rR1n1ppp/2pBpn2/2P5/r2P4/5NP1/5P1P/1R3K2 b - - 8 28'
+  },
+  {
+    puzzleSequence: 'd7b8 b1b8 e8d7 f3e5',
+    puzzleFen: '1R2k3/r2n1ppp/2pBp3/2P5/r2Pn3/5NP1/5P1P/1R3K2 b - - 10 29'
   }
 ])
 }, 120_000)

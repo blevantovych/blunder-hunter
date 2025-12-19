@@ -8,8 +8,6 @@ const THINK_TIME_PER_MOVE_MS = 1500;
 const MULTIPV_COUNT = 5; // number of lines for stockfish to calculate
 
 let timeoutId
-let logEverything = false
-const puzzles = []
 let outputBuffer = ""
 let evaluatingPuzzle = false
 let puzzleSequence = ""
@@ -18,7 +16,7 @@ let puzzleFen = "";
 let fenWherePuzzleStarts = ""
 let puzzleSide = "" // b or w
 let FEN_BEING_ANALYZED;
-// let STOCKFISH_OUTPUT_PER_FEN = {}
+let STOCKFISH_OUTPUT_PER_FEN = []
 
  /**
  * Funtion called by lambda to get puzzles for one chess game
@@ -27,6 +25,7 @@ let FEN_BEING_ANALYZED;
  * @returns {Promise}
  */
 function getPuzzles(pgn, spawn, thinkTimePerMoveMs, relaxTimeMs = 200) {
+  const puzzles = []
   const game = new Chess();
   game.loadPgn(pgn);
 
@@ -38,7 +37,6 @@ function getPuzzles(pgn, spawn, thinkTimePerMoveMs, relaxTimeMs = 200) {
     // stockfish.stdin.setEncoding("utf-8");
 
     const send = (cmd) => {
-      // console.log('sending command to stockfish: ' + cmd)
       stockfish.stdin.write(cmd + "\n");
     }
 
@@ -47,14 +45,7 @@ function getPuzzles(pgn, spawn, thinkTimePerMoveMs, relaxTimeMs = 200) {
 
     const analyzeMove = () => {
       const fen = currentBoard.fen();
-      if (logEverything) {
-        // console.log('setting fen: ', fen)
-      }
-      // console.log('=========')
-      // console.log()
-      // console.log(`request to stockfish: ${fen}`)
       FEN_BEING_ANALYZED = fen;
-      console.log({ fen });
       send("position fen " + fen);
       send(`go movetime ${thinkTimePerMoveMs}`);
       // send(`go depth ${DEPTH}`);
@@ -85,7 +76,8 @@ function getPuzzles(pgn, spawn, thinkTimePerMoveMs, relaxTimeMs = 200) {
       moves,
       currentBoard,
       analyzeMove,
-      nextMove
+      nextMove,
+      puzzles
     }));
 
     stockfish.stderr.on("data", (data) => {
@@ -122,6 +114,7 @@ function withoutLastMove(moveSequence) {
  * @param {any} params.currentBoard - ply
  * @param {function} params.analyzeMove - ply
  * @param {function} params.nextMove - ply
+ * @param {Array} params.puzzles - list of generated puzzles
  * @returns {void}
  */
 function handleStockfishOutput({
@@ -130,28 +123,16 @@ function handleStockfishOutput({
   moves,
   currentBoard,
   analyzeMove,
-  nextMove
+  nextMove,
+  puzzles
 }) {
-  // fs.appendFileSync('stockfish_output_game12.txt', data.toString(), (err) => { });
-  // console.log({
-  //   data: data.toString(),
-  //   currentIndex,
-  //   moves,
-  //   analyzeMove,
-  //   nextMove
-  // })
-    // console.log("data from stockfish: ", data.toString())
-     
     // if (!STOCKFISH_OUTPUT_PER_FEN[FEN_BEING_ANALYZED]) {
     //   STOCKFISH_OUTPUT_PER_FEN[FEN_BEING_ANALYZED] = []
     // }
     // STOCKFISH_OUTPUT_PER_FEN[FEN_BEING_ANALYZED].push(data.toString())
 
     outputBuffer += data.toString();
-  // console.log({ outputBuffer });
     const lines = outputBuffer.split("\n");
-  // console.log(JSON.stringify({ lines }, null, 4));
-  // console.log({ lines });
     const multipv = [];
 
     for (const line of lines) {
@@ -167,17 +148,10 @@ function handleStockfishOutput({
       }
 
       if (line.startsWith("bestmove")) {
-        console.log('here')
-        // console.log(outputBuffer)
-        // console.log()
+        STOCKFISH_OUTPUT_PER_FEN.push(lines)
+        const isMate = line.includes("(none)") && outputBuffer.includes("mate 0")
         outputBuffer = "";
-        const isMate = line.includes("mate 0")
         const variations = multipv.filter(Boolean);
-        // analysisResults.push({
-        //   move: moves[currentIndex - 1].san,
-        //   fen: currentBoard.fen(),
-        //   variations,
-        // });
 
         const isBlack = currentIndex % 2 === 1;
         const isWhite = !isBlack;
@@ -187,44 +161,15 @@ function handleStockfishOutput({
         const topEval = parseEval(sorted[0]?.evaluation ?? 0);
         const secondEval = parseEval(sorted[1]?.evaluation ?? 0);
         const computerMove = sorted[0]?.moves?.[0];
-        console.log({ fen: currentBoard.fen(), computerMove });
-        const gameMove = moves[currentIndex]?.lan;
 
         const onlyOneGoodMove = Math.abs(topEval - secondEval) > /* 200 */ 130 &&
           ((topEval * secondEval) < 0 || Math.abs(secondEval) < 100) &&
           topEval >= 0 /* && sorted.length > 1 */
-        // if (currentIndex === 52) {
-        //   process.exit(0)
-        // }
-        // if (logEverything) {
-        //   console.log({
-        //     currentIndex,
-        //     computerMove,
-        //     onlyOneGoodMove,
-        //     topEval,
-        //     secondEval,
-        //     sorted: JSON.stringify(sorted, null,4),
-        //     variations: JSON.stringify(variations, null, 4),
-        //     outputBuffer
-        //   })
-        // }
-        // if (currentIndex === 51) {
-        //   logEverything = true;
-        //   console.log({
-        //     currentIndex,
-        //     computerMove,
-        //     onlyOneGoodMove,
-        //     topEval,
-        //     secondEval,
-        //     sorted: JSON.stringify(sorted, null,4),
-        //     variations: JSON.stringify(variations, null, 4),
-        //     outputBuffer
-        //   })
-        // }
         if (
             onlyOneGoodMove || (evaluatingPuzzle && currentBoard.turn() !== puzzleSide) && computerMove
         ) {
           if (onlyOneGoodMove) {
+            // const gameMove = moves[currentIndex]?.lan;
             // console.log(`🤓 Only one good move: ${getCurrentMoveString(computerMove, evaluatingPuzzle ? puzzleMoveIndex : currentIndex)} vs ${gameMove}`);
             // console.log("Lines:\n", JSON.stringify(lines, null, 4))
           }
@@ -254,12 +199,10 @@ function handleStockfishOutput({
           analyzeMove();
         } else {
           if (evaluatingPuzzle) {
-            // console.log('🤖 analysis ended')
             if (puzzleMoveIndex - currentIndex > 2) {
-              // console.log({puzzleSequence})
               puzzles.push({
                 // if there was mate in the puzzle sequence do not remove the last move as the last move was mate
-                puzzleSequence: isMate ? puzzleSequence : withoutLastMove(puzzleSequence),
+                puzzleSequence: isMate ? puzzleSequence.trim() : withoutLastMove(puzzleSequence),
                 puzzleFen
               })
             }
@@ -272,8 +215,6 @@ function handleStockfishOutput({
         }
 
         if (!evaluatingPuzzle) {
-          
-          // console.log('calling nextmove');
           nextMove();
         }
       }
@@ -299,9 +240,9 @@ module.exports = {
 };
 
 
-// const pgn = fs.readFileSync("game12.pgn", "utf8");
-//
+// const pgn = fs.readFileSync("game20.pgn", "utf8");
+
 // getPuzzles(pgn, spawn, THINK_TIME_PER_MOVE_MS, 200).then((puzzles) => {
-  // console.log(STOCKFISH_OUTPUT_PER_FEN)
+//   console.log(JSON.stringify(STOCKFISH_OUTPUT_PER_FEN, null, 4))
 //   console.log(puzzles)
 // })
