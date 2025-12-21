@@ -4,7 +4,10 @@ import {test, expect, vi} from 'vitest'
 // import stockfishOutput from './stockfish_output_delimiter.json' assert { type: 'json' };
 import stockfishOutput from './test_fixtures/game_12_updated.json' assert { type: 'json' };
 import stockfishOutputWithMate from './test_fixtures/game_with_mate_puzzle.json' assert { type: 'json' };
+import stockfishOutputOneDumbThreeGood from './test_fixtures/one_dumb_and_3_good_puzzles.json' assert { type: 'json' };
 import stockfishOutputDumb from './test_fixtures/stockfish_output_dumb_puzzle.json' assert { type: 'json' };
+import stockfishOutputDumb2 from './test_fixtures/one_dumb_puzzle.json' assert { type: 'json' };
+import stockfishOutputDumb3 from './test_fixtures/another_dumb_puzzle.json' assert { type: 'json' };
 import stockfishOutputIssue5 from './test_fixtures/issue_5.json' assert { type: 'json' };
 import stockfishOutputLongPuzzle from './test_fixtures/long_puzzle.json' assert { type: 'json' };
 import {readFileSync} from 'node:fs'
@@ -1071,6 +1074,31 @@ test('getPuzzles with mate', async() => {
   ])
 })
 
+test('good puzzles with one dumb', async() => {
+  const pgn = readFileSync('./game25.pgn').toString()
+
+  const spawn = mockStockfishOutput(stockfishOutputOneDumbThreeGood)
+  const puzzles = await getPuzzles(pgn, spawn, 0, 0)
+  expect(puzzles).toEqual([
+      {
+        puzzleSequence: 'e4d6 d4d3 e2d2 g7b2',
+        puzzleFen: '2rq2k1/2rn1pb1/p2p2p1/1p1P3p/3pN2P/1P3PP1/PB2RQ2/1K1R4 w - - 0 27'
+      },
+      {
+        puzzleSequence: 'd1d3 d7c5 e2e8 d8e8 d6e8 c5d3 f2d2 c8e8',
+        puzzleFen: '2rq2k1/2rn1pb1/p2N2p1/1p1P3p/7P/1P1p1PP1/PB2RQ2/1K1R4 w - - 0 28'
+      },
+      {
+        puzzleSequence: 'd4f6 g7f6 e8c8 c7c8',
+        puzzleFen: '2r1R3/2r2pk1/p4qp1/1pnP3p/3Q3P/1P3PP1/P3R3/1K6 w - - 2 33'
+      },
+      {
+        puzzleSequence: 'e8c8 c6c8 e2c2 f6e6 b3b4 e6d6',
+        puzzleFen: '2r1R3/5p2/p1rP1kp1/1pn4p/7P/1P3PP1/P3R3/1K6 w - - 1 35'
+      }
+    ])
+})
+
 test('dumb puzzle (only obivous takes)', async() => {
   const pgn = readFileSync('./game23.pgn').toString()
 
@@ -1083,6 +1111,45 @@ test('dumb puzzle (only obivous takes)', async() => {
       puzzleFen: '2rBr1k1/pbnp1pp1/1p5p/2bP4/2BQn3/5N2/PP3PPP/R3R1K1 w - - 1 18'
     }
   ])
+})
+
+test('dumb puzzle 2 (only obivous takes)', async() => {
+  const pgn = readFileSync('./game23.pgn').toString()
+
+  const spawn = mockStockfishOutput(stockfishOutputDumb2)
+  const puzzles = await getPuzzles(pgn, spawn, 0, 0)
+  expect(puzzles).toEqual([
+    // this puzzle is too easy
+    {
+      puzzleSequence: 'd8c7 c5d4 f3d4 c8c7',
+      puzzleFen: '2rBr1k1/pbnp1pp1/1p5p/2bP4/2BQn3/5N2/PP3PPP/R3R1K1 w - - 1 18'
+    },
+    // this one is good
+    {
+      puzzleSequence: 'd2c2 d5d4 g2c6 d4e3',
+      puzzleFen: '8/6p1/2b2p1p/2kp4/2p2P1P/Pn2N1P1/1P1K2B1/8 w - - 1 43'
+    }
+  ])
+})
+
+test('dumb puzzle 3 (only obivous takes)', async() => {
+  const pgn = readFileSync('./game24.pgn').toString()
+
+  const spawn = mockStockfishOutput(stockfishOutputDumb3)
+  const puzzles = await getPuzzles(pgn, spawn, 0, 0)
+  expect(puzzles).toEqual(
+    [
+      {
+        puzzleSequence: 'd2e4 c3d1 e4f6 e7f6',
+        puzzleFen: 'r2q1rk1/2p1bppp/p3pn2/8/1p1Pb3/1Pn2NP1/PQ1NPPBP/R1BR2K1 w - - 6 16'
+      },
+      // this one too easy
+      {
+        puzzleSequence: 'a3b4 a5b4 b2c3 b4c3',
+        puzzleFen: '2rq1rk1/2p2ppp/4pb2/p7/1p1P4/PPn2NP1/1B1QPPBP/R5K1 w - - 0 21'
+      }
+    ]
+  )
 })
 
 // https://github.com/blevantovych/blunder-hunter/issues/5
@@ -1120,3 +1187,4 @@ test('issue 1', async() => {
     }
   ])
 })
+

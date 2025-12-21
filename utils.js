@@ -237,12 +237,13 @@ module.exports = {
   handleStockfishOutput,
   getCurrentMoveString,
   getPuzzles,
+  THINK_TIME_PER_MOVE_MS
 };
 
 
-// const pgn = fs.readFileSync("game13.pgn", "utf8");
-//
-// getPuzzles(pgn, spawn, THINK_TIME_PER_MOVE_MS, 200).then((puzzles) => {
-//   console.log(JSON.stringify(STOCKFISH_OUTPUT_PER_FEN, null, 4))
-//   console.log(puzzles)
-// })
+const pgn = fs.readFileSync("game25.pgn", "utf8");
+
+getPuzzles(pgn, spawn, THINK_TIME_PER_MOVE_MS, 200).then((puzzles) => {
+  console.log(JSON.stringify(STOCKFISH_OUTPUT_PER_FEN, null, 4))
+  console.log(puzzles)
+})

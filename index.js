@@ -2,7 +2,8 @@
 const { Chess } = require("chess.js");
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 const { PutCommand, DynamoDBDocumentClient } = require("@aws-sdk/lib-dynamodb");
-const { getPuzzles } = require('./utils');
+const { spawn } = require("child_process");
+const { getPuzzles, THINK_TIME_PER_MOVE_MS } = require('./utils');
 
 const client = new DynamoDBClient({ region: "eu-central-1" });
 const docClient = DynamoDBDocumentClient.from(client);
@@ -33,7 +34,7 @@ exports.handler = async (event) => {
   console.log(`Analyzing game ${pgnHeaders.Site}`);
 
 
-  const puzzles = await getPuzzles(pgn)
+  const puzzles = await getPuzzles(pgn, spawn, THINK_TIME_PER_MOVE_MS)
 
   await Promise.all(puzzles.map(puzzle => {
     const params = {
