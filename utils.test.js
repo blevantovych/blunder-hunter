@@ -6,6 +6,7 @@ import stockfishOutput from './test_fixtures/game_12_updated.json' assert { type
 import stockfishOutputWithMate from './test_fixtures/game_with_mate_puzzle.json' assert { type: 'json' };
 import stockfishOutputDumb from './test_fixtures/stockfish_output_dumb_puzzle.json' assert { type: 'json' };
 import stockfishOutputIssue5 from './test_fixtures/issue_5.json' assert { type: 'json' };
+import stockfishOutputLongPuzzle from './test_fixtures/long_puzzle.json' assert { type: 'json' };
 import {readFileSync} from 'node:fs'
 
 
@@ -1098,6 +1099,24 @@ test('issue 5', async() => {
     {
       puzzleSequence: 'e3c4 c6c4 d5c4 a5a6 d7e6 b6c6',
       puzzleFen: '6k1/3b4/1KR3p1/P2p2P1/1P1Pp3/4n3/8/8 b - - 3 64'
+    }
+  ])
+})
+
+// https://github.com/blevantovych/blunder-hunter/issues/1
+test('issue 1', async() => {
+  const pgn = readFileSync('./game8.pgn').toString()
+
+  const spawn = mockStockfishOutput(stockfishOutputLongPuzzle)
+  const puzzles = await getPuzzles(pgn, spawn, 0, 0)
+  expect(puzzles).toEqual([
+    {
+      puzzleSequence: 'a5c7 d4e5 d6e5 d5d6 c7c3 d6e7 f8e8 d1d8 c3c6 b5c5 c6d7 f1d1 d7e7 d8e7 e8e7 d1d8', // 8 move puzzle!
+      puzzleFen: 'r1b2rk1/pp2np1p/3pp1p1/qR1Pb3/3BP3/2N3P1/P4PBP/3Q1RK1 b - - 5 16'
+    },
+    {
+      puzzleSequence: 'a7a6 d4e5 d6e5 d5d6',
+      puzzleFen: 'r1b2rk1/ppq1np1p/3pp1p1/3Pb3/3BP3/1RN3P1/P4PBP/3Q1RK1 b - - 7 17'
     }
   ])
 })
