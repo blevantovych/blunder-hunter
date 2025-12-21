@@ -126,10 +126,10 @@ function handleStockfishOutput({
   nextMove,
   puzzles
 }) {
-    // if (!STOCKFISH_OUTPUT_PER_FEN[FEN_BEING_ANALYZED]) {
-    //   STOCKFISH_OUTPUT_PER_FEN[FEN_BEING_ANALYZED] = []
-    // }
-    // STOCKFISH_OUTPUT_PER_FEN[FEN_BEING_ANALYZED].push(data.toString())
+    if (!STOCKFISH_OUTPUT_PER_FEN[FEN_BEING_ANALYZED]) {
+      STOCKFISH_OUTPUT_PER_FEN[FEN_BEING_ANALYZED] = []
+    }
+    STOCKFISH_OUTPUT_PER_FEN[FEN_BEING_ANALYZED].push(data.toString())
 
     outputBuffer += data.toString();
     const lines = outputBuffer.split("\n");
@@ -240,8 +240,8 @@ module.exports = {
 };
 
 
-// const pgn = fs.readFileSync("game20.pgn", "utf8");
-
+// const pgn = fs.readFileSync("game13.pgn", "utf8");
+//
 // getPuzzles(pgn, spawn, THINK_TIME_PER_MOVE_MS, 200).then((puzzles) => {
 //   console.log(JSON.stringify(STOCKFISH_OUTPUT_PER_FEN, null, 4))
 //   console.log(puzzles)

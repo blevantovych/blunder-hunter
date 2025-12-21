@@ -2,8 +2,10 @@ import {handleStockfishOutput, getPuzzles} from './utils.js'
 import { Chess } from "chess.js";
 import {test, expect, vi} from 'vitest'
 // import stockfishOutput from './stockfish_output_delimiter.json' assert { type: 'json' };
-import stockfishOutput from './game_12_updated.json' assert { type: 'json' };
-import stockfishOutputWithMate from './game_with_mate_puzzle.json' assert { type: 'json' };
+import stockfishOutput from './test_fixtures/game_12_updated.json' assert { type: 'json' };
+import stockfishOutputWithMate from './test_fixtures/game_with_mate_puzzle.json' assert { type: 'json' };
+import stockfishOutputDumb from './test_fixtures/stockfish_output_dumb_puzzle.json' assert { type: 'json' };
+import stockfishOutputIssue5 from './test_fixtures/issue_5.json' assert { type: 'json' };
 import {readFileSync} from 'node:fs'
 
 
@@ -1029,46 +1031,73 @@ function mockStockfishOutput(stockfishOutput) {
 
 test('getPuzzles game 12', async() => {
   const pgn = readFileSync('./game12.pgn').toString()
-  console.log({ pgn });
 
   const spawn = mockStockfishOutput(stockfishOutput)
   const puzzles = await getPuzzles(pgn, spawn, 0, 0)
-  console.log({ puzzles });
   expect(puzzles).toEqual([
-  {
-    puzzleSequence: 'f1e1 a7a5 b4c2 c5d3',
-    puzzleFen: 'r2q1rk1/pb2bppp/1p6/2n1P3/1N3B2/P4N2/1P3PPP/R2Q1RK1 w - - 1 16'
-  },
-  {
-    puzzleSequence: 'd5b5 c7c1 g1h2 e6c7 b5b6 c7d5 b6b7 d5e3',
-    puzzleFen: '3r2k1/2r2pp1/1p1Nn2p/3RP3/p7/P3R2P/1P3PP1/6K1 w - - 1 33'
-  },
-  {
-    puzzleSequence: 'g1h2 e6c7 b5b6 c7d5 b6b7 d5e3',
-    puzzleFen: '3r2k1/5pp1/1p1Nn2p/1R2P3/p7/P3R2P/1P3PP1/2r3K1 w - - 3 34'
-  },
-  {
-    puzzleSequence: 'c5e4 c3c2 d8c8 b5b4',
-    puzzleFen: '3r2k1/5pp1/1pr4p/1Rn1P3/p1N5/P1R4P/1P3PPK/8 b - - 8 36'
-  }
-])
-}, 120_000)
+    {
+      puzzleSequence: 'f1e1 a7a5 b4c2 c5d3',
+      puzzleFen: 'r2q1rk1/pb2bppp/1p6/2n1P3/1N3B2/P4N2/1P3PPP/R2Q1RK1 w - - 1 16'
+    },
+    {
+      puzzleSequence: 'd5b5 c7c1 g1h2 e6c7 b5b6 c7d5 b6b7 d5e3',
+      puzzleFen: '3r2k1/2r2pp1/1p1Nn2p/3RP3/p7/P3R2P/1P3PP1/6K1 w - - 1 33'
+    },
+    {
+      puzzleSequence: 'g1h2 e6c7 b5b6 c7d5 b6b7 d5e3',
+      puzzleFen: '3r2k1/5pp1/1p1Nn2p/1R2P3/p7/P3R2P/1P3PP1/2r3K1 w - - 3 34'
+    },
+    {
+      puzzleSequence: 'c5e4 c3c2 d8c8 b5b4',
+      puzzleFen: '3r2k1/5pp1/1pr4p/1Rn1P3/p1N5/P1R4P/1P3PPK/8 b - - 8 36'
+    }
+  ])
+})
 
 test('getPuzzles with mate', async() => {
   const pgn = readFileSync('./game20.pgn').toString()
-  console.log({ pgn });
 
   const spawn = mockStockfishOutput(stockfishOutputWithMate)
   const puzzles = await getPuzzles(pgn, spawn, 0, 0)
-  console.log({ puzzles });
+  expect(puzzles).toEqual([{
+      puzzleSequence: 'f6e4 b7b8 d7b8 b1b8 e8d7 f3e5',
+      puzzleFen: '4k3/rR1n1ppp/2pBpn2/2P5/r2P4/5NP1/5P1P/1R3K2 b - - 8 28'
+    },
+    {
+      puzzleSequence: 'd7b8 b1b8 e8d7 f3e5',
+      puzzleFen: '1R2k3/r2n1ppp/2pBp3/2P5/r2Pn3/5NP1/5P1P/1R3K2 b - - 10 29'
+    }
+  ])
+})
+
+test('dumb puzzle (only obivous takes)', async() => {
+  const pgn = readFileSync('./game23.pgn').toString()
+
+  const spawn = mockStockfishOutput(stockfishOutputDumb)
+  const puzzles = await getPuzzles(pgn, spawn, 0, 0)
+  // this puzzle is dumb, need to find a way to not generate it
   expect(puzzles).toEqual([
-  {
-    puzzleSequence: 'f6e4 b7b8 d7b8 b1b8 e8d7 f3e5',
-    puzzleFen: '4k3/rR1n1ppp/2pBpn2/2P5/r2P4/5NP1/5P1P/1R3K2 b - - 8 28'
-  },
-  {
-    puzzleSequence: 'd7b8 b1b8 e8d7 f3e5',
-    puzzleFen: '1R2k3/r2n1ppp/2pBp3/2P5/r2Pn3/5NP1/5P1P/1R3K2 b - - 10 29'
-  }
-])
-}, 120_000)
+    {
+      puzzleSequence: 'd8c7 c5d4 f3d4 c8c7',
+      puzzleFen: '2rBr1k1/pbnp1pp1/1p5p/2bP4/2BQn3/5N2/PP3PPP/R3R1K1 w - - 1 18'
+    }
+  ])
+})
+
+// https://github.com/blevantovych/blunder-hunter/issues/5
+test('issue 5', async() => {
+  const pgn = readFileSync('./game13.pgn').toString()
+
+  const spawn = mockStockfishOutput(stockfishOutputIssue5)
+  const puzzles = await getPuzzles(pgn, spawn, 0, 0)
+  expect(puzzles).toEqual([
+    {
+      puzzleSequence: 'e6d7 a5a6 e3c2 b5c5 d7c6 b4b5 e4e3 b5c6 e3e2 c6c7 e2e1q c7c8q',
+      puzzleFen: '6k1/8/2R1b1p1/PK1p2P1/1P1Pp3/4n3/8/8 b - - 1 63'
+    },
+    {
+      puzzleSequence: 'e3c4 c6c4 d5c4 a5a6 d7e6 b6c6',
+      puzzleFen: '6k1/3b4/1KR3p1/P2p2P1/1P1Pp3/4n3/8/8 b - - 3 64'
+    }
+  ])
+})
