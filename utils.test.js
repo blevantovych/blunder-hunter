@@ -1,4 +1,4 @@
-import {handleStockfishOutput, getPuzzles} from './utils.js'
+import {handleStockfishOutput, getPuzzles, isOnlyMove} from './utils.js'
 import { Chess } from "chess.js";
 import {test, expect, vi} from 'vitest'
 // import stockfishOutput from './stockfish_output_delimiter.json' assert { type: 'json' };
@@ -10,6 +10,8 @@ import stockfishOutputDumb2 from './test_fixtures/one_dumb_puzzle.json' assert {
 import stockfishOutputDumb3 from './test_fixtures/another_dumb_puzzle.json' assert { type: 'json' };
 import stockfishOutputIssue5 from './test_fixtures/issue_5.json' assert { type: 'json' };
 import stockfishOutputLongPuzzle from './test_fixtures/long_puzzle.json' assert { type: 'json' };
+import stockfishOutputTooShortPuzzle from './test_fixtures/puzzle_that_should_be_longer.json' assert { type: 'json' };
+import stockfishOutputNiceBishopTrap from './test_fixtures/nice_bishop_trap.json' assert { type: 'json' };
 import {readFileSync} from 'node:fs'
 
 
@@ -964,7 +966,6 @@ function mockStockfishOutput(stockfishOutput) {
         if (data.includes("go movetime")) {
           stockfishOutputIndex++;
           // console.log(stockfishOutput[stockfishOutputIndex].length)
-          console.log({stockfishOutputIndex})
           onData(stockfishOutput[stockfishOutputIndex].join('\n'))
           // for (const lines of stockfishOutput[stockfishOutputIndex]) {
           //   try {
@@ -1050,10 +1051,6 @@ test('getPuzzles game 12', async() => {
     {
       puzzleSequence: 'g1h2 e6c7 b5b6 c7d5 b6b7 d5e3',
       puzzleFen: '3r2k1/5pp1/1p1Nn2p/1R2P3/p7/P3R2P/1P3PP1/2r3K1 w - - 3 34'
-    },
-    {
-      puzzleSequence: 'c5e4 c3c2 d8c8 b5b4',
-      puzzleFen: '3r2k1/5pp1/1pr4p/1Rn1P3/p1N5/P1R4P/1P3PPK/8 b - - 8 36'
     }
   ])
 })
@@ -1087,10 +1084,6 @@ test('good puzzles with one dumb', async() => {
       {
         puzzleSequence: 'd1d3 d7c5 e2e8 d8e8 d6e8 c5d3 f2d2 c8e8',
         puzzleFen: '2rq2k1/2rn1pb1/p2N2p1/1p1P3p/7P/1P1p1PP1/PB2RQ2/1K1R4 w - - 0 28'
-      },
-      {
-        puzzleSequence: 'd4f6 g7f6 e8c8 c7c8',
-        puzzleFen: '2r1R3/2r2pk1/p4qp1/1pnP3p/3Q3P/1P3PP1/P3R3/1K6 w - - 2 33'
       },
       {
         puzzleSequence: 'e8c8 c6c8 e2c2 f6e6 b3b4 e6d6',
@@ -1160,12 +1153,32 @@ test('issue 5', async() => {
   const puzzles = await getPuzzles(pgn, spawn, 0, 0)
   expect(puzzles).toEqual([
     {
-      puzzleSequence: 'e6d7 a5a6 e3c2 b5c5 d7c6 b4b5 e4e3 b5c6 e3e2 c6c7 e2e1q c7c8q',
+      puzzleSequence: 'd6f7 h7g7 e7f8 g7g6',
+      puzzleFen: '4b3/4k2R/p1pn2p1/Pp1p2P1/1P1PpK2/4P3/2P5/8 b - - 4 44'
+    },
+    {
+      puzzleSequence: 'e6d7 a5a6 e3c2 b5c5 d7c6 b4b5 e4e3 b5c6 e3e2 c6c7 g8f7 c7c8q',
       puzzleFen: '6k1/8/2R1b1p1/PK1p2P1/1P1Pp3/4n3/8/8 b - - 1 63'
     },
     {
-      puzzleSequence: 'e3c4 c6c4 d5c4 a5a6 d7e6 b6c6',
+      puzzleSequence: 'b5b6 d7c6 b6c6 e3c2',
+      puzzleFen: '6k1/3b4/2R3p1/PK1p2P1/1P1Pp3/4n3/8/8 w - - 2 64'
+    },
+    {
+      puzzleSequence: 'e3c4 c6c4 d5c4 a5a6 g8g7 a6a7',
       puzzleFen: '6k1/3b4/1KR3p1/P2p2P1/1P1Pp3/4n3/8/8 b - - 3 64'
+    },
+    {
+      puzzleSequence: 'd7c6 c7c6 e4e3 a5a6 e3e2 a6a7 e2e1q a7a8q',
+      puzzleFen: '6k1/2Kb4/2R3p1/P2p2P1/1PnPp3/8/8/8 b - - 5 65'
+    },
+    {
+      puzzleSequence: 'e4e3 a5a6 e3e2 a6a7 g8f7 a7a8q',
+      puzzleFen: '6k1/8/2K3p1/P2p2P1/1PnPp3/8/8/8 b - - 0 66'
+    },
+    {
+      puzzleSequence: 'e3e2 a6a7 g8f7 a7a8q',
+      puzzleFen: '6k1/8/P1K3p1/3p2P1/1PnP4/4p3/8/8 b - - 0 67'
     }
   ])
 })
@@ -1188,3 +1201,72 @@ test('issue 1', async() => {
   ])
 })
 
+test('puzzle is too short', async() => {
+  const pgn = readFileSync('./game27.pgn').toString()
+
+  const spawn = mockStockfishOutput(stockfishOutputTooShortPuzzle)
+  const puzzles = await getPuzzles(pgn, spawn, 0, 0)
+  expect(puzzles).toEqual([
+    {
+      puzzleSequence: 'e5g7 e7f6 f1e1 d7e5 e1e5 e8d7 g7f6 d8f6',
+      puzzleFen: 'r2qk2r/pp1nbpp1/2p3bp/4Q3/8/BP4P1/P1P2PBP/RN3RK1 w kq - 3 14'
+    },
+    {
+      puzzleSequence: 'e7f6 f1e1 d7e5 e1e5',
+      puzzleFen: 'r2qk2r/pp1nbpQ1/2p3bp/8/8/BP4P1/P1P2PBP/RN3RK1 b kq - 0 14'
+    },
+    {
+      puzzleSequence: 'd7e5 e1e5 e8d7 g7f6 d8f6 a3b2',
+      puzzleFen: 'r2qk2r/pp1n1pQ1/2p2bbp/8/8/BP4P1/P1P2PBP/RN2R1K1 b kq - 2 15'
+    },
+    {
+      puzzleSequence: 'e8d7 g7f6 d8f6 a3b2',
+      puzzleFen: 'r2qk2r/pp3pQ1/2p2bbp/4R3/8/BP4P1/P1P2PBP/RN4K1 b kq - 0 16'
+    },
+    {
+      puzzleSequence: 'c6b5 a3b5 c7c6 b5d6',
+      puzzleFen: 'r6r/p1k2p2/2pq2bp/1R6/8/NP4PB/PBP2P1P/R5K1 b - - 0 21'
+    }
+  ])
+})
+
+test('nice bishop trap', async() => {
+  const pgn = readFileSync('./game28.pgn').toString()
+
+  const spawn = mockStockfishOutput(stockfishOutputNiceBishopTrap)
+  const puzzles = await getPuzzles(pgn, spawn, 0, 0)
+  expect(puzzles).toEqual([
+    {
+      puzzleSequence: 'f6d5 c3d5 c7d5 d1d5 g7a1 f1a1',
+      puzzleFen: 'r2qr1k1/ppn2pbp/3p1np1/2PP4/1P2p3/P1N1B1PP/5PB1/R2Q1RK1 b - - 1 17'
+    },
+    {
+      puzzleSequence: 'c5a7 d8d6 f6b2 b7b6',
+      puzzleFen: '3rr1k1/ppq4p/5Qp1/2B2p2/1P2p3/P5PP/5PB1/5RK1 w - - 2 23'
+    }
+  ])
+})
+
+// test.only('onlyMove', () => {
+//   expect(isOnlyMove(500, 10)).toBe(true)
+// })
+//
+// test.only('onlyMove', () => {
+//   expect(isOnlyMove(0, 300)).toBe(true)
+// })
+//
+// test.only('onlyMove', () => {
+//   expect(isOnlyMove(1, -300)).toBe(true)
+// })
+//
+// test.only('onlyMove (for black)', () => {
+//   expect(isOnlyMove(14, -295)).toBe(true)
+// })
+//
+// test.only('onlyMove (for black)', () => {
+//   expect(isOnlyMove(0, -295)).toBe(true)
+// })
+
+// test.only('onlyMove (for black)', () => {
+//   expect(isOnlyMove(-2, -295)).toBe(true)
+// })

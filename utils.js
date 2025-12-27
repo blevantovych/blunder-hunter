@@ -6,6 +6,7 @@ const fs = require("fs");
 const THINK_TIME_PER_MOVE_MS = 1500;
 // const DEPTH = 25;
 const MULTIPV_COUNT = 5; // number of lines for stockfish to calculate
+const THRESHHOLD = 130
 
 let timeoutId
 let outputBuffer = ""
@@ -17,6 +18,7 @@ let fenWherePuzzleStarts = ""
 let puzzleSide = "" // b or w
 let FEN_BEING_ANALYZED;
 let STOCKFISH_OUTPUT_PER_FEN = []
+const gameEvaluation = []
 
  /**
  * Funtion called by lambda to get puzzles for one chess game
@@ -57,6 +59,8 @@ function getPuzzles(pgn, spawn, thinkTimePerMoveMs, relaxTimeMs = 200) {
         clearTimeout(timeoutId)
         stockfish.stdin.end();
 
+        console.log('gameEvaluation')
+        console.log(JSON.stringify(gameEvaluation, null, 4))
         resolve(puzzles)
         
       } else {
@@ -162,12 +166,44 @@ function handleStockfishOutput({
         const secondEval = parseEval(sorted[1]?.evaluation ?? 0);
         const computerMove = sorted[0]?.moves?.[0];
 
-        const onlyOneGoodMove = Math.abs(topEval - secondEval) > /* 200 */ 130 &&
-          ((topEval * secondEval) < 0 || Math.abs(secondEval) < 100) &&
-          topEval >= 0 /* && sorted.length > 1 */
+        const onlyOneGoodMove = isOnlyMove(topEval, secondEval)
+        // const onlyOneGoodMove = Math.abs(topEval - secondEval) > /* 200 */ THRESHHOLD &&
+        //   ((topEval * secondEval) <= 0 || Math.abs(secondEval) < 100) &&
+        //   topEval >= 0 /* && sorted.length > 1 */
+          
+          // if (puzzleMoveIndex > 0) {
+          //   console.log({
+          //     topEval,
+          //     secondEval,
+          //     currentIndex,
+          //     computerMove
+          //   })
+          // }
+          if (computerMove === 'g7f6') {
+            console.log({
+              topEval,
+              secondEval,
+              onlyOneGoodMove,
+              puzzleMoveIndex,
+              fen: currentBoard.fen()
+            })
+          }
         if (
             onlyOneGoodMove || (evaluatingPuzzle && currentBoard.turn() !== puzzleSide) && computerMove
         ) {
+          if (gameEvaluation[gameEvaluation.length - 1].lines) {
+            gameEvaluation[gameEvaluation.length - 1].lines.push({
+              computerMove,
+              topEval,
+              secondEval
+            })
+          } else {
+            gameEvaluation[gameEvaluation.length - 1].lines = [{
+              computerMove,
+              topEval,
+              secondEval
+            }]
+          }
           if (onlyOneGoodMove) {
             // const gameMove = moves[currentIndex]?.lan;
             // console.log(`🤓 Only one good move: ${getCurrentMoveString(computerMove, evaluatingPuzzle ? puzzleMoveIndex : currentIndex)} vs ${gameMove}`);
@@ -187,17 +223,18 @@ function handleStockfishOutput({
           puzzleSequence += `${computerMove} `
 
           // console.log(`Analyzing move ${getCurrentMoveString(computerMove, puzzleMoveIndex)}`);
-          // try {
+          try {
             currentBoard.move(computerMove);
-          // } catch(e) {
-            // console.log({e})
-            // console.log({ computerMove });
-            // console.log('fen: ', currentBoard.fen());
-            // console.log('lines: ', JSON.stringify(lines, null, 4));
-          // }
+          } catch(e) {
+            console.log({e})
+            console.log({ computerMove });
+            console.log('fen: ', currentBoard.fen());
+            console.log('lines: ', JSON.stringify(lines, null, 4));
+          }
           puzzleMoveIndex++;
           analyzeMove();
         } else {
+          gameEvaluation.push({gameMove: moves[currentIndex]?.san, topEval , secondEval})
           if (evaluatingPuzzle) {
             if (puzzleMoveIndex - currentIndex > 2) {
               puzzles.push({
@@ -233,7 +270,14 @@ function parseEval (evalValue) {
   return evalValue;
 };
 
+function isOnlyMove(topEval, secondEval) {
+  return Math.abs(topEval - secondEval) > /* 200 */ THRESHHOLD &&
+          ((topEval * secondEval) <= 0 || Math.abs(secondEval) < 100) &&
+          topEval >= 0 /* && sorted.length > 1 */
+}
+
 module.exports = {
+  isOnlyMove,
   handleStockfishOutput,
   getCurrentMoveString,
   getPuzzles,
@@ -241,9 +285,10 @@ module.exports = {
 };
 
 
-const pgn = fs.readFileSync("game25.pgn", "utf8");
+const pgn = fs.readFileSync("game12.pgn", "utf8");
 
 getPuzzles(pgn, spawn, THINK_TIME_PER_MOVE_MS, 200).then((puzzles) => {
-  console.log(JSON.stringify(STOCKFISH_OUTPUT_PER_FEN, null, 4))
+  // console.log(JSON.stringify(STOCKFISH_OUTPUT_PER_FEN, null, 4))
+  fs.writeFileSync('stockfish_ouput.json', JSON.stringify(STOCKFISH_OUTPUT_PER_FEN, null, 4))
   console.log(puzzles)
 })
