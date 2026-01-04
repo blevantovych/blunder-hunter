@@ -1,7 +1,5 @@
-import {handleStockfishOutput, getPuzzles, isOnlyMove} from './utils.js'
-import { Chess } from "chess.js";
-import {test, expect, vi} from 'vitest'
-// import stockfishOutput from './stockfish_output_delimiter.json' assert { type: 'json' };
+import { getPuzzles } from './utils.js'
+import {test, expect } from 'vitest'
 import stockfishOutput from './test_fixtures/game_12_updated.json' assert { type: 'json' };
 import stockfishOutputWithMate from './test_fixtures/game_with_mate_puzzle.json' assert { type: 'json' };
 import stockfishOutputOneDumbThreeGood from './test_fixtures/one_dumb_and_3_good_puzzles.json' assert { type: 'json' };
@@ -12,6 +10,7 @@ import stockfishOutputIssue5 from './test_fixtures/issue_5.json' assert { type: 
 import stockfishOutputLongPuzzle from './test_fixtures/long_puzzle.json' assert { type: 'json' };
 import stockfishOutputTooShortPuzzle from './test_fixtures/puzzle_that_should_be_longer.json' assert { type: 'json' };
 import stockfishOutputNiceBishopTrap from './test_fixtures/nice_bishop_trap.json' assert { type: 'json' };
+import stockfishOutputWithPerpetual from './test_fixtures/perpetual.json' assert { type: 'json' };
 import {readFileSync} from 'node:fs'
 
 
@@ -1243,6 +1242,39 @@ test('nice bishop trap', async() => {
     {
       puzzleSequence: 'c5a7 d8d6 f6b2 b7b6',
       puzzleFen: '3rr1k1/ppq4p/5Qp1/2B2p2/1P2p3/P5PP/5PB1/5RK1 w - - 2 23'
+    }
+  ])
+})
+
+test('doesn\'t produce a very long perpetual', async() => {
+  const pgn = readFileSync('./game29.pgn').toString()
+
+  const spawn = mockStockfishOutput(stockfishOutputWithPerpetual)
+  const puzzles = await getPuzzles(pgn, spawn, 0, 0)
+  expect(puzzles).toEqual([
+    {
+      puzzleSequence: 'e3c5 b6c5 d2c3 c5b6',
+      puzzleFen: '2kr3r/pp3ppp/1qn2n2/2bb1N2/8/4BPP1/PP1QP2P/RN2KB1R w KQ - 5 12'
+    },
+    {
+      puzzleSequence: 'f1d3 d5a2 a1a2 f6d5',
+      puzzleFen: '1k1r4/pp3pNp/1qn2n2/3br3/4P3/2Q2PP1/PP1N3P/R3KB1R w KQ - 1 17'
+    },
+    {
+      puzzleSequence: 'e1e2 f6d5 c3c5 f3d4 e2f2 b6b2',
+      puzzleFen: '1k1r4/pp3p1p/1q3n2/5P2/8/2QB1nP1/PP5P/2R1K2R w K - 0 22'
+    },
+    {
+      puzzleSequence: 'c3c5 f3d4 e2f2 b6b2',
+      puzzleFen: '1k1r4/pp3p1p/1q6/3n1P2/8/2QB1nP1/PP2K2P/2R4R w - - 2 23'
+    },
+    {
+      puzzleSequence: 'b7b6 c5d5 d8d5 e1e8 b8b7 e8e7 b7b8 e7e8 b8b7 e8e7 b7b8',
+      puzzleFen: '1k1r4/pp3p1p/8/2Qn1P2/3n4/3B2P1/Pq5P/2RKR3 b - - 1 25'
+    },
+    {
+      puzzleSequence: 'd1e2 d3c3 c1b1 f3e1',
+      puzzleFen: '1k6/p4p1p/1p6/5P2/8/2Qr1nP1/P6P/1qRKR3 w - - 0 32'
     }
   ])
 })

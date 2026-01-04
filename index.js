@@ -33,7 +33,6 @@ exports.handler = async (event) => {
 
   console.log(`Analyzing game ${pgnHeaders.Site}`);
 
-
   const puzzles = await getPuzzles(pgn, spawn, THINK_TIME_PER_MOVE_MS)
 
   await Promise.all(puzzles.map(puzzle => {

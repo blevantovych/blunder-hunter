@@ -1,12 +1,12 @@
 // @ts-check
-const { spawn } = require("child_process");
+// const { spawn } = require("child_process");
 const { Chess } = require("chess.js");
-const fs = require("fs");
+// const fs = require("fs");
 
 const THINK_TIME_PER_MOVE_MS = 1500;
 // const DEPTH = 25;
 const MULTIPV_COUNT = 5; // number of lines for stockfish to calculate
-const THRESHHOLD = 130
+const THRESHHOLD = 130;
 
 let timeoutId
 let outputBuffer = ""
@@ -18,7 +18,7 @@ let fenWherePuzzleStarts = ""
 let puzzleSide = "" // b or w
 let FEN_BEING_ANALYZED;
 let STOCKFISH_OUTPUT_PER_FEN = []
-const gameEvaluation = []
+// const gameEvaluation = []
 
  /**
  * Funtion called by lambda to get puzzles for one chess game
@@ -59,13 +59,13 @@ function getPuzzles(pgn, spawn, thinkTimePerMoveMs, relaxTimeMs = 200) {
         clearTimeout(timeoutId)
         stockfish.stdin.end();
 
-        console.log('gameEvaluation')
-        console.log(JSON.stringify(gameEvaluation, null, 4))
+        // console.log('gameEvaluation')
+        // console.log(JSON.stringify(gameEvaluation, null, 4))
         resolve(puzzles)
         
       } else {
         const move = moves[currentIndex].san;
-        const moveString = getCurrentMoveString(move, currentIndex)
+        // const moveString = getCurrentMoveString(move, currentIndex)
         // console.log(`🤔 on move ${moveString}`)
         // console.log(`Analyzing move ${getCurrentMoveString(move, currentIndex)}`);
         currentBoard.move(move);
@@ -141,12 +141,14 @@ function handleStockfishOutput({
 
     for (const line of lines) {
       if (line.includes("multipv")) {
-        const match = line.match(/multipv (\d+).*score (cp|mate) (-?\d+).* pv (.+)/);
+        const match = line.match(/depth (\d+) seldepth (\d+) multipv (\d+) .*score (cp|mate) (-?\d+).* pv (.+)/);
         if (match) {
-          const [, id, type, value, pvMoves] = match;
+          const [, depth, seldepth, id, type, value, pvMoves] = match;
           multipv[parseInt(id) - 1] = {
             evaluation: type === "cp" ? parseInt(value) : `#${value}`,
-            moves: pvMoves.split(" ")
+            moves: pvMoves.split(" "),
+            seldepth,
+            depth
           };
         }
       }
@@ -158,13 +160,13 @@ function handleStockfishOutput({
         const variations = multipv.filter(Boolean);
 
         const isBlack = currentIndex % 2 === 1;
-        const isWhite = !isBlack;
 
         // const sorted = [...variations].sort((a, b) => (isWhite ? 1 : -1) * (parseEval(b.evaluation) - parseEval(a.evaluation)));
         const sorted = [...variations].sort((a, b) => parseEval(b.evaluation) - parseEval(a.evaluation));
         const topEval = parseEval(sorted[0]?.evaluation ?? 0);
         const secondEval = parseEval(sorted[1]?.evaluation ?? 0);
         const computerMove = sorted[0]?.moves?.[0];
+        // const secondComputerMove = sorted[1]?.moves?.[0];
 
         const onlyOneGoodMove = isOnlyMove(topEval, secondEval)
         // const onlyOneGoodMove = Math.abs(topEval - secondEval) > /* 200 */ THRESHHOLD &&
@@ -179,38 +181,37 @@ function handleStockfishOutput({
           //     computerMove
           //   })
           // }
-          if (computerMove === 'g7f6') {
-            console.log({
-              topEval,
-              secondEval,
-              onlyOneGoodMove,
-              puzzleMoveIndex,
-              fen: currentBoard.fen()
-            })
-          }
+        // const firstLine = {
+        //   eval: topEval,
+        //   move: computerMove,
+        //   seldepth: sorted[0]?.seldepth,
+        //   depth: sorted[0]?.depth,
+        // }
+        //
+        // const secondLine = {
+        //   eval: secondEval,
+        //   move: secondComputerMove,
+        //   seldepth: sorted[1]?.seldepth,
+        //   depth: sorted[1]?.depth
+        // }
         if (
-            onlyOneGoodMove || (evaluatingPuzzle && currentBoard.turn() !== puzzleSide) && computerMove
+            (onlyOneGoodMove || (evaluatingPuzzle && currentBoard.turn() !== puzzleSide)) && computerMove && !currentBoard.isThreefoldRepetition()
         ) {
-          if (gameEvaluation[gameEvaluation.length - 1].lines) {
-            gameEvaluation[gameEvaluation.length - 1].lines.push({
-              computerMove,
-              topEval,
-              secondEval
-            })
-          } else {
-            gameEvaluation[gameEvaluation.length - 1].lines = [{
-              computerMove,
-              topEval,
-              secondEval
-            }]
-          }
-          if (onlyOneGoodMove) {
-            // const gameMove = moves[currentIndex]?.lan;
-            // console.log(`🤓 Only one good move: ${getCurrentMoveString(computerMove, evaluatingPuzzle ? puzzleMoveIndex : currentIndex)} vs ${gameMove}`);
-            // console.log("Lines:\n", JSON.stringify(lines, null, 4))
-          }
+
+          // if (gameEvaluation[gameEvaluation.length - 1].lines) {
+          //   gameEvaluation[gameEvaluation.length - 1].lines.push({
+          //     computerMove,
+          //     firstLine,
+          //     secondLine
+          //   })
+          // } else {
+          //   gameEvaluation[gameEvaluation.length - 1].lines = [{
+          //     computerMove,
+          //     firstLine,
+          //     secondLine
+          //   }]
+          // }
           if (!evaluatingPuzzle) {
-            // console.log('🤖 analysis started')
             puzzleMoveIndex = currentIndex;
             puzzleSide = isBlack ? 'b' : 'w'
             puzzleFen = currentBoard.history({ verbose: true })?.at(-1)?.before
@@ -223,18 +224,22 @@ function handleStockfishOutput({
           puzzleSequence += `${computerMove} `
 
           // console.log(`Analyzing move ${getCurrentMoveString(computerMove, puzzleMoveIndex)}`);
-          try {
+          // try {
             currentBoard.move(computerMove);
-          } catch(e) {
-            console.log({e})
-            console.log({ computerMove });
-            console.log('fen: ', currentBoard.fen());
-            console.log('lines: ', JSON.stringify(lines, null, 4));
-          }
+          // } catch(e) {
+          //   console.log({e})
+          //   console.log({ computerMove });
+          //   console.log('fen: ', currentBoard.fen());
+          //   console.log('lines: ', JSON.stringify(lines, null, 4));
+          // }
           puzzleMoveIndex++;
           analyzeMove();
         } else {
-          gameEvaluation.push({gameMove: moves[currentIndex]?.san, topEval , secondEval})
+          // gameEvaluation.push({
+          //   gameMove: moves[currentIndex]?.san,
+          //   firstLine,
+          //   secondLine
+          // })
           if (evaluatingPuzzle) {
             if (puzzleMoveIndex - currentIndex > 2) {
               puzzles.push({
@@ -285,10 +290,12 @@ module.exports = {
 };
 
 
-const pgn = fs.readFileSync("game12.pgn", "utf8");
-
-getPuzzles(pgn, spawn, THINK_TIME_PER_MOVE_MS, 200).then((puzzles) => {
-  // console.log(JSON.stringify(STOCKFISH_OUTPUT_PER_FEN, null, 4))
-  fs.writeFileSync('stockfish_ouput.json', JSON.stringify(STOCKFISH_OUTPUT_PER_FEN, null, 4))
-  console.log(puzzles)
-})
+// const pgn = fs.readFileSync("game29.pgn", "utf8");
+//
+// getPuzzles(pgn, spawn, THINK_TIME_PER_MOVE_MS, 200).then((puzzles) => {
+//
+//   console.log(JSON.stringify(gameEvaluation, null, 4))
+//   // console.log(JSON.stringify(STOCKFISH_OUTPUT_PER_FEN, null, 4))
+//   fs.writeFileSync('stockfish_output.json', JSON.stringify(STOCKFISH_OUTPUT_PER_FEN, null, 4))
+//   console.log(puzzles)
+// })
