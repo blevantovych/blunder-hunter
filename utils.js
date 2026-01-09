@@ -68,7 +68,12 @@ function getPuzzles(pgn, spawn, thinkTimePerMoveMs, relaxTimeMs = 200) {
         // const moveString = getCurrentMoveString(move, currentIndex)
         // console.log(`🤔 on move ${moveString}`)
         // console.log(`Analyzing move ${getCurrentMoveString(move, currentIndex)}`);
-        currentBoard.move(move);
+        try {
+          currentBoard.move(move);
+        } catch(e) {
+          resolve([])
+          return
+        }
         currentIndex++;
         analyzeMove();
       }

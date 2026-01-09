@@ -11,6 +11,7 @@ import stockfishOutputLongPuzzle from './test_fixtures/long_puzzle.json' assert 
 import stockfishOutputTooShortPuzzle from './test_fixtures/puzzle_that_should_be_longer.json' assert { type: 'json' };
 import stockfishOutputNiceBishopTrap from './test_fixtures/nice_bishop_trap.json' assert { type: 'json' };
 import stockfishOutputWithPerpetual from './test_fixtures/perpetual.json' assert { type: 'json' };
+import stockfishOutputFromPosition from './test_fixtures/from_position.json' assert { type: 'json' };
 import {readFileSync} from 'node:fs'
 
 
@@ -1277,6 +1278,14 @@ test('doesn\'t produce a very long perpetual', async() => {
       puzzleFen: '1k6/p4p1p/1p6/5P2/8/2Qr1nP1/P6P/1qRKR3 w - - 0 32'
     }
   ])
+})
+
+test('should ignore from position games (for now)', async() => {
+  const pgn = readFileSync('./game33.pgn').toString()
+  const spawn = mockStockfishOutput(stockfishOutputFromPosition)
+
+  const puzzles = await getPuzzles(pgn, spawn, 0, 0)
+  expect(puzzles).toEqual([])
 })
 
 // test.only('onlyMove', () => {
